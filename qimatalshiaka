@@ -1,0 +1,3 @@
+mkdir -p qimatalshiaka/css qimatalshiaka/images
+cd qimatalshiaka
+touch index.html style.scss script.js
