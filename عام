@@ -1,0 +1,269 @@
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خياط الثوب السعودي - متجر الأقمشة والتفصيل</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@300;500;800&display=swap');
+        
+        body {
+            font-family: 'Noto Kufi Arabic', sans-serif;
+            background-color: #fcfbf7;
+        }
+
+        .hero-title {
+            font-family: 'Amiri', serif;
+        }
+
+        .fabric-card {
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+
+        .fabric-card:hover {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            border-color: #c5a059;
+        }
+
+        .gold-button {
+            background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #b8860b;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body class="text-gray-900">
+
+    <!-- Navigation -->
+    <nav class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-100">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <i class="fas fa-cut text-2xl text-amber-700"></i>
+                <h1 class="text-xl font-extrabold tracking-tight text-gray-800">خياط <span class="text-amber-600">النخبة</span></h1>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <button onclick="toggleCart()" class="relative p-2 bg-gray-50 rounded-full">
+                    <i class="fas fa-shopping-bag text-xl text-gray-700"></i>
+                    <span id="cart-count" class="cart-badge">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-[60vh] flex items-center justify-center text-center text-white bg-slate-900 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1594932224827-94b169bb9a2d?auto=format&fit=crop&q=80&w=1200" alt="Fabric" class="absolute inset-0 w-full h-full object-cover opacity-40">
+        <div class="relative z-10 px-4">
+            <h2 class="hero-title text-5xl md:text-7xl mb-4 font-bold tracking-wide">أفخم الأقمشة، لأرقى الثياب</h2>
+            <p class="text-lg md:text-xl max-w-2xl mx-auto opacity-90 font-light">اختر قماشك المفضل، وحدد تفاصيل ثوبك، واترك الباقي لخبرائنا.</p>
+            <div class="mt-8">
+                <a href="#fabrics" class="gold-button px-8 py-3 rounded-full font-bold shadow-lg inline-block">تصفح الأقمشة</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Info -->
+    <div class="container mx-auto px-6 -mt-10 relative z-20">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="bg-white p-6 rounded-xl shadow-md flex items-center gap-4">
+                <div class="bg-amber-100 p-4 rounded-full text-amber-700"><i class="fas fa-scroll text-2xl"></i></div>
+                <div><h4 class="font-bold">أقمشة يابانية</h4><p class="text-xs text-gray-500">جودة أصلية وماركات عالمية</p></div>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md flex items-center gap-4 border-x-2 border-amber-50">
+                <div class="bg-amber-100 p-4 rounded-full text-amber-700"><i class="fas fa-ruler-combined text-2xl"></i></div>
+                <div><h4 class="font-bold">تفصيل دقيق</h4><p class="text-xs text-gray-500">بأيدي أمهر الخياطين</p></div>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md flex items-center gap-4">
+                <div class="bg-amber-100 p-4 rounded-full text-amber-700"><i class="fab fa-whatsapp text-2xl"></i></div>
+                <div><h4 class="font-bold">طلب سهل</h4><p class="text-xs text-gray-500">أرسل مقاسك عبر الواتساب</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fabrics Section -->
+    <main id="fabrics" class="container mx-auto px-6 py-20">
+        <div class="text-center mb-16">
+            <h3 class="text-3xl font-bold mb-2">كتالوج الأقمشة</h3>
+            <div class="w-20 h-1 bg-amber-600 mx-auto"></div>
+        </div>
+
+        <div id="fabric-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <!-- Fabrics will load here -->
+        </div>
+    </main>
+
+    <!-- Shopping Cart Sidebar -->
+    <div id="cart-sidebar" class="fixed inset-0 bg-black/60 z-[100] hidden">
+        <div class="absolute left-0 top-0 h-full w-full max-w-md bg-white shadow-2xl flex flex-col slide-in">
+            <div class="p-6 border-b flex justify-between items-center bg-gray-50">
+                <h2 class="text-xl font-bold flex items-center gap-2">
+                    <i class="fas fa-shopping-cart text-amber-600"></i> طلباتك
+                </h2>
+                <button onclick="toggleCart()" class="text-gray-400 hover:text-red-500 transition-colors">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            
+            <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-6">
+                <!-- Cart items load here -->
+            </div>
+
+            <div class="p-6 border-t bg-gray-50 space-y-4">
+                <div class="space-y-2">
+                    <label class="text-sm font-bold block">ملاحظات المقاس:</label>
+                    <select id="size-type" class="w-full p-3 rounded-lg border bg-white focus:ring-2 focus:ring-amber-500 outline-none">
+                        <option value="new">تفصيل جديد (المحل يأخذ مقاسي)</option>
+                        <option value="existing">استخدام مقاسي القديم المسجل</option>
+                        <option value="send">سأرسل ثوب عينة للمحل</option>
+                    </select>
+                </div>
+                
+                <div class="flex justify-between items-center py-2 border-b">
+                    <span class="text-lg font-bold">المجموع:</span>
+                    <span id="cart-total" class="text-2xl font-black text-amber-700">0 ر.س</span>
+                </div>
+                
+                <button onclick="sendWhatsAppOrder()" class="w-full gold-button text-white py-4 rounded-xl font-bold flex justify-center items-center gap-3 hover:scale-[1.02] transition-transform">
+                    <i class="fab fa-whatsapp text-2xl"></i>
+                    تأكيد الطلب والتواصل
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-8 py-4 rounded-full shadow-2xl z-[110] flex items-center gap-3 opacity-0 transition-opacity pointer-events-none">
+        <i class="fas fa-check-circle text-green-400"></i>
+        <span>تمت إضافة القماش بنجاح</span>
+    </div>
+
+    <script>
+        const fabrics = [
+            { id: 1, name: "سميراميس ياباني", price: 280, image: "https://images.unsplash.com/photo-1594932224827-94b169bb9a2d?w=500", desc: "أبيض نص وقفة، قماش صيفي فاخر." },
+            { id: 2, name: "ريتشي أصلي", price: 320, image: "https://images.unsplash.com/photo-1524234107056-1c1f48f64ab8?w=500", desc: "قماش فخم جداً، ياباني 100%." },
+            { id: 3, name: "تويوبو ملكي", price: 350, image: "https://images.unsplash.com/photo-1614676466623-f1d96a402e94?w=500", desc: "قماش قطني ناعم الملمس." },
+            { id: 4, name: "شكيب كلاسيك", price: 260, image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=500", desc: "عملي جداً للاستخدام اليومي." },
+            { id: 5, name: "قماش شتوي صوف", price: 450, image: "https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=500", desc: "صوف انجليزي ثقيل للأجواء الباردة." },
+            { id: 6, name: "سلك فايبر", price: 220, image: "https://images.unsplash.com/photo-1606041008023-472dfb5e530f?w=500", desc: "مقاوم للتجعيد وسهل الكي." }
+        ];
+
+        let cart = [];
+        const MY_WHATSAPP = "967738360254"; // استبدل برقمك
+
+        function renderFabrics() {
+            const grid = document.getElementById('fabric-grid');
+            grid.innerHTML = fabrics.map(f => `
+                <div class="fabric-card bg-white rounded-2xl overflow-hidden flex flex-col h-full">
+                    <div class="h-56 relative overflow-hidden group">
+                        <img src="${f.image}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                            <p class="text-white text-xs">${f.desc}</p>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-lg font-bold text-gray-800 mb-1">${f.name}</h4>
+                            <span class="text-amber-700 font-black text-xl">${f.price} ر.س <small class="text-gray-400 text-xs font-normal">/ شامل التفصيل</small></span>
+                        </div>
+                        <button onclick="addToCart(${f.id})" class="mt-6 w-full py-3 border-2 border-amber-600 text-amber-700 rounded-xl font-bold hover:bg-amber-600 hover:text-white transition-all flex justify-center items-center gap-2">
+                            <i class="fas fa-plus-circle"></i> اختيار القماش
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function addToCart(id) {
+            const fabric = fabrics.find(f => f.id === id);
+            cart.push({...fabric, cartId: Date.now()});
+            updateUI();
+            showToast();
+        }
+
+        function updateUI() {
+            document.getElementById('cart-count').innerText = cart.length;
+            const cartItems = document.getElementById('cart-items');
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = `<div class="text-center py-20 text-gray-300"><i class="fas fa-cut text-6xl mb-4"></i><p>لم تختر أي قماش بعد</p></div>`;
+            } else {
+                cartItems.innerHTML = cart.map((item, idx) => `
+                    <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100">
+                        <img src="${item.image}" class="w-20 h-24 rounded-lg object-cover">
+                        <div class="flex-1">
+                            <div class="flex justify-between">
+                                <h5 class="font-bold text-gray-800">${item.name}</h5>
+                                <button onclick="removeItem(${idx})" class="text-gray-300 hover:text-red-500"><i class="fas fa-trash-alt"></i></button>
+                            </div>
+                            <p class="text-amber-700 font-bold mt-2">${item.price} ر.س</p>
+                            <div class="mt-3 flex flex-wrap gap-2">
+                                <span class="text-[10px] bg-white border px-2 py-1 rounded italic text-gray-500">تفصيل سعودي أصيل</span>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            document.getElementById('cart-total').innerText = total + ' ر.س';
+        }
+
+        function removeItem(idx) {
+            cart.splice(idx, 1);
+            updateUI();
+        }
+
+        function toggleCart() {
+            document.getElementById('cart-sidebar').classList.toggle('hidden');
+        }
+
+        function showToast() {
+            const t = document.getElementById('toast');
+            t.style.opacity = '1';
+            setTimeout(() => t.style.opacity = '0', 2000);
+        }
+
+        function sendWhatsAppOrder() {
+            if (cart.length === 0) return;
+
+            const sizeOption = document.getElementById('size-type').options[document.getElementById('size-type').selectedIndex].text;
+            let msg = `*طلب تفصيل ثياب رجالية*\n\n`;
+            msg += `*نوع الخدمة:* خياطة وتفصيل\n`;
+            msg += `*المقاس:* ${sizeOption}\n\n`;
+            msg += `*الأقمشة المختارة:*\n`;
+            
+            cart.forEach((item, i) => {
+                msg += `${i+1}. ${item.name} (${item.price} ر.س)\n`;
+            });
+
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            msg += `\n*الإجمالي الشامل: ${total} ر.س*\n\n`;
+            msg += `_يرجى التواصل لتحديد موعد القياس أو تأكيد المقاسات السابقة._`;
+
+            window.open(`https://wa.me/${+967738360254}?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        window.onload = renderFabrics;
+    </script>
+</body>
+</html>
+
+```
